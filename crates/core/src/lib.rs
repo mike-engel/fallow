@@ -1084,6 +1084,11 @@ fn run_plugins(
         result.virtual_module_prefixes.iter().cloned().collect();
     let mut seen_generated: rustc_hash::FxHashSet<String> =
         result.generated_import_patterns.iter().cloned().collect();
+    let mut seen_generated_substrings: rustc_hash::FxHashSet<String> = result
+        .generated_import_substrings
+        .iter()
+        .cloned()
+        .collect();
     let mut seen_suffixes: rustc_hash::FxHashSet<String> =
         result.virtual_package_suffixes.iter().cloned().collect();
 
@@ -1165,6 +1170,11 @@ fn run_plugins(
             &mut result.generated_import_patterns,
             &mut seen_generated,
             ws_result.generated_import_patterns,
+        );
+        extend_unique(
+            &mut result.generated_import_substrings,
+            &mut seen_generated_substrings,
+            ws_result.generated_import_substrings,
         );
         extend_unique(
             &mut result.virtual_package_suffixes,

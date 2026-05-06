@@ -2,7 +2,7 @@ mod boundary;
 pub mod feature_flags;
 mod package_json_utils;
 mod predicates;
-mod unused_deps;
+pub(crate) mod unused_deps;
 mod unused_exports;
 mod unused_files;
 mod unused_members;
@@ -244,6 +244,14 @@ pub fn find_dead_code_full(
                 .collect()
         })
         .unwrap_or_default();
+    let generated_substrings: Vec<&str> = plugin_result
+        .map(|pr| {
+            pr.generated_import_substrings
+                .iter()
+                .map(String::as_str)
+                .collect()
+        })
+        .unwrap_or_default();
 
     let (
         (unused_files, export_results),
@@ -404,6 +412,7 @@ pub fn find_dead_code_full(
                                             &suppressions,
                                             &virtual_prefixes,
                                             &generated_patterns,
+                                            &generated_substrings,
                                             &line_offsets_by_file,
                                         )
                                     } else {

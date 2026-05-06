@@ -68,6 +68,9 @@ pub struct AggregatedPluginResult {
     /// Import suffixes for build-time generated relative imports.
     /// Unresolved imports ending with these suffixes are suppressed.
     pub generated_import_patterns: Vec<String>,
+    /// Substring markers for build-time template-placeholder imports.
+    /// Unresolved imports CONTAINING any of these substrings are suppressed.
+    pub generated_import_substrings: Vec<String>,
     /// Path alias mappings from active plugins (prefix → replacement directory).
     /// Used by the resolver to substitute import prefixes before re-resolving.
     pub path_aliases: Vec<(String, String)>,

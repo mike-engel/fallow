@@ -33,6 +33,7 @@ const RUNTIME_ENTRY_POINT_PLUGINS: &[&str] = &[
     "convex",
     "docusaurus",
     "electron",
+    "ember",
     "expo",
     "expo-router",
     "gatsby",
@@ -689,6 +690,24 @@ pub trait Plugin: Send + Sync {
         &[]
     }
 
+    /// Substring markers for build-time template-placeholder imports.
+    ///
+    /// Unresolved imports whose specifier **contains** any of these substrings
+    /// will not be flagged as `unresolved-import`. Unlike `generated_import_patterns`
+    /// (which is anchored suffix match), this is unanchored substring match —
+    /// intended for framework templating placeholders that can appear anywhere
+    /// in a specifier.
+    ///
+    /// Example: the Ember plugin returns `["{{", "###"]` to suppress Handlebars
+    /// expressions and ember-cli blueprint placeholders that leak into
+    /// `<script src>` / `<link href>` extractions from `app/index.html` (e.g.
+    /// `./{{rootURL}}assets/cio.js`, `###APPNAME###/app`). Such specifiers
+    /// never resolve to a file on disk because the framework's build pipeline
+    /// substitutes them at build time.
+    fn generated_import_substrings(&self) -> &'static [&'static str] {
+        &[]
+    }
+
     /// Path alias mappings provided by this framework at build time.
     ///
     /// Returns a list of `(prefix, replacement_dir)` tuples. When an import starting
@@ -980,6 +999,7 @@ mod dependency_cruiser;
 mod docusaurus;
 mod drizzle;
 mod electron;
+mod ember;
 mod eslint;
 mod expo;
 mod expo_router;

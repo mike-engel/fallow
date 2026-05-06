@@ -42,6 +42,7 @@ fn unresolved_import_detected() {
         &suppressions,
         &[],
         &[],
+        &[],
         &line_offsets,
     );
 
@@ -89,6 +90,7 @@ fn unresolved_dynamic_import_detected_with_real_location() {
         &resolved_modules,
         &config,
         &suppressions,
+        &[],
         &[],
         &[],
         &line_offsets,
@@ -140,6 +142,7 @@ fn unresolved_virtual_module_not_reported() {
         &suppressions,
         &[],
         &[],
+        &[],
         &line_offsets,
     );
 
@@ -188,6 +191,7 @@ fn unresolved_import_with_virtual_prefix_not_reported() {
         &config,
         &suppressions,
         &["#"], // Nuxt-style virtual prefix
+        &[],
         &[],
         &line_offsets,
     );
@@ -264,6 +268,7 @@ fn unresolved_import_suppressed_by_generated_import_pattern() {
         &suppressions,
         &[],
         &["/$types"], // SvelteKit-style generated import
+        &[],
         &line_offsets,
     );
 
@@ -319,6 +324,7 @@ fn unresolved_import_suppressed_by_inline_comment() {
         &resolved_modules,
         &config,
         &suppressions,
+        &[],
         &[],
         &[],
         &line_offsets,
@@ -379,6 +385,7 @@ fn unresolved_dynamic_import_suppressed_by_inline_comment() {
         &suppressions,
         &[],
         &[],
+        &[],
         &line_offsets,
     );
 
@@ -434,6 +441,7 @@ fn unresolved_import_file_level_suppression() {
         &resolved_modules,
         &config,
         &suppressions,
+        &[],
         &[],
         &[],
         &line_offsets,
@@ -499,6 +507,7 @@ fn resolved_import_not_reported_as_unresolved() {
         &suppressions,
         &[],
         &[],
+        &[],
         &line_offsets,
     );
 
@@ -521,6 +530,7 @@ fn no_resolved_modules_produces_no_unresolved() {
         &resolved_modules,
         &config,
         &suppressions,
+        &[],
         &[],
         &[],
         &line_offsets,
@@ -580,6 +590,7 @@ fn unresolved_import_not_suppressed_by_wrong_kind() {
         &resolved_modules,
         &config,
         &suppressions,
+        &[],
         &[],
         &[],
         &line_offsets,

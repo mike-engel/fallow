@@ -538,6 +538,7 @@ fn multiple_unresolved_imports_collected() {
         &suppressions,
         &[],
         &[],
+        &[],
         &line_offsets,
     );
 
