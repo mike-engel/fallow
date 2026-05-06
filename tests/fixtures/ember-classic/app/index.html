@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>EmberClassicFixture</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <!--
+      The `{{rootURL}}` and `{{config.assetsPath}}` placeholders are
+      Handlebars expressions that ember-cli substitutes at build time. They
+      are never resolvable as on-disk specifiers, so the Ember plugin's
+      `generated_import_substrings` (`{{`, `###`) must keep them out of
+      `unresolved-import` reporting.
+    -->
+    <script src="{{rootURL}}assets/vendor.js"></script>
+    <script src="{{config.assetsPath}}assets/ember-classic-fixture.js"></script>
+  </body>
+</html>
