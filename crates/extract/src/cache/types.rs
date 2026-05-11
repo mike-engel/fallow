@@ -7,7 +7,13 @@ use bitcode::{Decode, Encode};
 use crate::MemberKind;
 
 /// Cache version, bump when the cache format or cached extraction semantics change.
-pub(super) const CACHE_VERSION: u32 = 75;
+///
+/// v76: Glimmer `<template>` scanner now extracts imported-binding usage and
+///      emits `MemberAccess { object: "this", member }` for `{{this.foo}}`
+///      references. Older cache entries omitted both, surfacing
+///      template-only imports as `unused-import` and template-only class
+///      members as `unused-class-member` on `.gts` / `.gjs` files.
+pub(super) const CACHE_VERSION: u32 = 76;
 
 /// Duplication token cache version — bump when duplicate tokenization,
 /// normalization, or the on-disk token cache schema changes.
